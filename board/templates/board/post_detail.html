@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+   {% block body %}
+    <div class="container" style="margin-top: 30px; padding-top:15px;">
+        <table class="table table-hover">
+            <thead>
+               <tr>
+                  <th style="width: 10%" class="font-weight-normal">번호: {{object.pk}}</th>
+                  <th style="width: 50%" class="font-weight-normal">제목: {{object.title}}</th>
+                  <th style="width: 15%" class="font-weight-normal">작성자: {{object.author}}</th>
+                  <th style="width: 15%" class="font-weight-normal">작성일: {{object.pub_date | date:'m-d - H:i' }}</th>
+                  <th style="width: 10%" class="font-weight-normal">조회수: {{object.count}}</th>
+               </tr>
+            </thead>                     
+         </table>
+         {{object.text|linebreaks}}
+         <p style="margin-top: 30px; padding-top:15px; min-height:100px;">
+            <hr>
+         </p>
+         {% if user == object.author %}
+         <a class="btn btn-default pull-right" href="{% url 'board:post_delete' object.pk %}" style="margin:5px;">삭 제</a>
+         <a class="btn btn-default pull-right" href="{% url 'board:post_update' object.pk %}" style="margin:5px;">수 정</a>
+         {% endif %}
+    </div>
+
+   {% endblock %}

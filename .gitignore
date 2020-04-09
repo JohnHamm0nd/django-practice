@@ -1,0 +1,3 @@
+photos/
+*.sqlite3
+.ipynb_checkpoints/
